@@ -1,0 +1,51 @@
+<!-- empty wishlist -->
+<div *ngIf="wishlistItems.length==0" class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <img src="https://cdn.dribbble.com/users/5107895/screenshots/14532312/media/a7e6c2e9333d0989e3a54c95dd8321d7.gif"
+                alt="">
+            <h3 class="text-danger mt-2">Your Wishlist is Empty!!!!!!</h3><br>
+            <a class="btn btn-success" routerLink="">Add More</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- wishlist section  -->
+<section *ngIf="wishlistItems.length!=0" class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="text-center mt-5 ">Wishlist</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            <div class="col mb-5" *ngFor="let product of wishlistItems">
+                <div class="card h-100 p-4">
+                    <!-- Product image-->
+                    <img height="250px" class="card-img-top" [src]=product.image [alt]=product.title />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{product.title.slice(0,20)}}...</h5>
+                            <!-- Product price-->
+                            <span class="fw-bolder">${{product.price}}</span>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="d-flex justify-content-between">
+                            <!-- view -->
+                            <button (click)="removeWishlistItem(product.id)" class="btn btn-danger mt-auto">
+                                <i class="fa-solid fa-heart-circle-minus fa-1x"></i></button>
+                            <!-- bttn -->
+                            <button (click)="addTocart(product)" class="btn btn-success text-light"><i
+                                    class="fa-sharp fa-solid fa-cart-plus fa-1x"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
